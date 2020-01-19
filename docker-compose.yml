@@ -3,7 +3,7 @@ services:
   app:
     container_name: app
     restart: always
-    build: client/.
+    build: server/.
     ports:
       - "4000:4000"
     links:

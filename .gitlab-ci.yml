@@ -1,0 +1,14 @@
+image: ubuntu
+
+
+build:
+    stage: build
+    script:
+        - docker-compose build
+        - docker-compose run
+
+test:
+    stage: test
+    script:
+      - echo "testing"
+      - echo "Currently empty"
