@@ -1,0 +1,16 @@
+<mat-grid-list cols="{{ newsdata.length }}" rowHeight="100px">
+  <mat-grid-tile
+    *ngFor="let data of newsdata"
+    [colspan]="newsdata.length"
+    [rowspan]= 1
+  >
+  <!-- [style.background]= 'black' -->
+    <button (click)="openlink(data.story_url, data.url)">
+      {{ data.story_title || data.title}}
+      <div style="color:gray; float: right;">&nbsp;-&nbsp; {{ data.author }} &nbsp;-&nbsp;</div>
+    </button>
+    <div><button (click)='deleteNews(data.objectID)'>DeleteMe</button></div>
+    <mat-divider></mat-divider>
+  </mat-grid-tile>
+</mat-grid-list>
+<!-- <button (click)='test()'>press</button> -->
