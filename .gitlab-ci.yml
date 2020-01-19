@@ -20,4 +20,5 @@ test:
     stage: test
     script:
       - echo "testing"
-      - echo "Currently empty"
+      - ping localhost:4000
+      - wget localhost:4000
