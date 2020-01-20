@@ -11,10 +11,10 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   getnewsdata(): Observable<NewsArray[]> {
-    return this.http.get<NewsArray[]>('http://localhost:3000/news');
+    return this.http.get<NewsArray[]>('http://localhost:4000/news');
   }
   sendnewsdata() {
-    
+
   }
 }
 

@@ -20,5 +20,4 @@ test:
     stage: test
     script:
       - echo "testing"
-      - curl localhost:4000
       - wget localhost:4000

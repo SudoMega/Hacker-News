@@ -27,7 +27,6 @@ export class NewsComponent implements OnInit {
         this.newsdata.splice(numero, 1);
       }
     }
-    http
   }
   openlink(url1: string, url2: string) {
     if(url1 !== null){

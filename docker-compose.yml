@@ -1,13 +1,20 @@
 version: "2"
 services:
-  app:
-    container_name: app
+  server:
+    container_name: server
     restart: always
     build: Server/.
     ports:
       - "4000:4000"
     links:
       - mongo
+      # - client
+  # client:
+  #   container_name: client
+  #   restart: always
+  #   build: client/.
+  #   ports:
+  #     - "4200:4200"
   mongo:
     container_name: mongo
     image: mongo
