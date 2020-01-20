@@ -64,20 +64,6 @@ ourRequest.send();
 //     });
 // });
 
-//Function to add an identifier, to know if the object as been deleted
-//It delete the elements that dont have a title
-function dataload(){
-    var newsdata = JSON.parse(ourRequest.responseText);
-    for (i = 0; i < newsdata.hits.length; i++) {
-        if (newsdata.hits[i].isdeleted == 1){}
-
-        else {newsdata.hits[i].isdeleted = 2;}
-      } 
-    // console.log(newsdata);
-    tempdata = newsdata;
-    return tempdata;
-}
-
 app.get('/', function(req, res) {
     res.send(tempdata.hits);
 });
@@ -89,8 +75,9 @@ app.get('/news', function(req, res) {
         var db = client.db('mynewsdb')
         var cursor = db.collection('news-data').find();
         cursor.forEach(function(element, err) {
-            // assert.equal(null, err);
-            resultArray.push(element);
+            if (cursor[element].isdeleted === false){
+                resultArray.push(element);
+            }
         }, function(){
             client.close();
             res.send(resultArray);
@@ -118,6 +105,16 @@ app.get('/init', function(req, res) {
         res.redirect('/news');           
     });
 });
+
+//Function to add an identifier to know if the object as been deleted
+function dataload(){
+    var newsdata = JSON.parse(ourRequest.responseText);
+    for (i = 0; i < newsdata.hits.length; i++) {
+        newsdata.hits[i].isdeleted = false;
+    }
+    tempdata = newsdata;
+    return tempdata;
+}
 
 app.listen(PORT, function(){
     console.log('Your node js server is running on PORT:',PORT);

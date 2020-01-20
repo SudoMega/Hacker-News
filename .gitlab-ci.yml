@@ -20,5 +20,5 @@ test:
     stage: test
     script:
       - echo "testing"
-      - ping localhost:4000
+      - curl localhost:4000
       - wget localhost:4000
