@@ -12,7 +12,7 @@ services:
   client:
     container_name: client
     restart: always
-    build: client/.
+    build: Client/.
     ports:
       - "4200:4200"
   mongo:
