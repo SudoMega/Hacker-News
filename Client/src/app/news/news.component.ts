@@ -3,7 +3,6 @@ import { NewsService } from './news.service';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NewsArray } from './newsInterface';
-import { NewsTestService } from '../news-test/news-test.service';
 import { ReturnStatement, preserveWhitespacesDefault } from '@angular/compiler';
 
 @Component({
@@ -15,16 +14,17 @@ import { ReturnStatement, preserveWhitespacesDefault } from '@angular/compiler';
 export class NewsComponent implements OnInit {
   public newsdata = [];
 
-  constructor(private newstestservice: NewsTestService) { }
+  constructor(private newsservice: NewsService) { }
 
   ngOnInit() {
-    this.newstestservice.getnewsdata()
+    this.newsservice.getnewsdata()
     .subscribe(data => this.newsdata = data);
   }
   deleteNews(id: string) {
-    for (let numero = 0; numero < this.newsdata.length; numero++){
-      if(this.newsdata[numero].objectID === id) {
-        this.newsdata.splice(numero, 1);
+    for (let x = 0; x < this.newsdata.length; x++){
+      if(this.newsdata[x].objectID === id) {
+        this.newsdata.splice(x, 1);
+        this.newsservice.deleteObject(id);
       }
     }
   }

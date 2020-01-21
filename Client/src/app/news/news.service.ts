@@ -13,8 +13,9 @@ export class NewsService {
   getnewsdata(): Observable<NewsArray[]> {
     return this.http.get<NewsArray[]>('http://localhost:4000/news');
   }
-  sendnewsdata() {
 
+  deleteObject(objectID: string) {
+    return this.http.post('http://localhost:4000/delete', objectID);
   }
 }
 

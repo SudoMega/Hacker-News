@@ -8,13 +8,13 @@ services:
       - "4000:4000"
     links:
       - mongo
-      # - client
-  # client:
-  #   container_name: client
-  #   restart: always
-  #   build: client/.
-  #   ports:
-  #     - "4200:4200"
+      - client
+  client:
+    container_name: client
+    restart: always
+    build: client/.
+    ports:
+      - "4200:4200"
   mongo:
     container_name: mongo
     image: mongo
