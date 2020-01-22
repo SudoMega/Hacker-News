@@ -20,7 +20,6 @@ test:
     stage: test
     script:
       - echo "testing"
-      - apt-get update -y
-      - apt-get install curl -y
+      - apk --no-cache add curl
       - curl http://localhost:4000/init
       - curl http://localhost:4200/
