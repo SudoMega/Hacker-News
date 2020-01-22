@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { NewsService } from './news.service';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { NewsArray } from './newsInterface';
+import { ID } from './newsInterface';
 import { ReturnStatement, preserveWhitespacesDefault } from '@angular/compiler';
 
 @Component({
@@ -13,7 +13,7 @@ import { ReturnStatement, preserveWhitespacesDefault } from '@angular/compiler';
 
 export class NewsComponent implements OnInit {
   public newsdata = [];
-
+  public Id: ID;
   constructor(private newsservice: NewsService) { }
 
   ngOnInit() {
@@ -21,20 +21,18 @@ export class NewsComponent implements OnInit {
     .subscribe(data => this.newsdata = data);
   }
   deleteNews(id: string) {
-    for (let x = 0; x < this.newsdata.length; x++){
+    for (let x = 0; x < this.newsdata.length; x++) {
       if (this.newsdata[x].objectID === id) {
         this.newsdata.splice(x, 1);
-        this.newsservice.deleteObject(id);
+        this.newsservice.deleteObject(id)
+        .subscribe(data => this.Id = data);
       }
     }
   }
   openlink(url1: string, url2: string) {
-    if(url1 !== null){
+    if (url1 !== null) {
     window.open(url1, '_blank');
-    }
-    if(url1 === null && url2 !== null){
-    window.open(url2, '_blank');
-    }
+    } else {window.open(url2, '_blank'); }
   }
 }
 

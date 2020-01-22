@@ -64,9 +64,44 @@ app.get('/init', function(req, res) {
     });
 });
 
-app.post('/delete', function(req, res) {
-    console.log(req.body);
+// app.get('/delete/:id', function(req, res) {
+//     console.log(req.params.id);
+//     var resultArray = [];
+//     var myquery = { isdeleted: true };
+//     client.connect(config.DB, { useUnifiedTopology: true }, function(err, client) {
+//         var db = client.db('mynewsdb');
+//         var cursor = db.collection('news-data').find();
+//         cursor.forEach(element => {
+//           resultArray.push(element);
+//       },function(){
+//           resultArray.forEach(element => {        
+//               if (element.objectID === req.params.id){
+//                 db.collection("news-data").update(myquery,{ objectID: req.params.id}, function(err, res) {
+//                   if (err) throw err;
+//                   console.log("1 document updated");
+//                   client.close();
+//                 });
+//               }         
+//           });    
+//       });
+//     });
+// });
+
+app.get('/delete/:id', function(req, res) {
+  console.log(req.params.id);
+  var resultArray = [];
+  var item = { isdeleted: true };
+  client.connect(config.DB, { useUnifiedTopology: true }, function(err, client) {
+      var db = client.db('mynewsdb');
+      db.collection("news-data").updateOne({"objectID": req.params.id}, {$set: item}, function(err, res) {
+        if (err) throw err;
+        console.log("1 document updated");
+        client.close();
+      });
+  });
 });
+
+
 
   //-----------------------------------------//
  //----------------FUNCTIONS----------------//

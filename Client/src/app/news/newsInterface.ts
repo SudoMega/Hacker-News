@@ -16,3 +16,7 @@ export interface NewsArray {
   objectID:         string;
   isdeleted:        number;
 }
+
+export interface ID {
+  id: string;
+}
