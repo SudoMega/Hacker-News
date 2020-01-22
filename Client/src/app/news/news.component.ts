@@ -22,7 +22,7 @@ export class NewsComponent implements OnInit {
   }
   deleteNews(id: string) {
     for (let x = 0; x < this.newsdata.length; x++){
-      if(this.newsdata[x].objectID === id) {
+      if (this.newsdata[x].objectID === id) {
         this.newsdata.splice(x, 1);
         this.newsservice.deleteObject(id);
       }

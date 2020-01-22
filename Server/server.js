@@ -65,7 +65,7 @@ app.get('/init', function(req, res) {
 });
 
 app.post('/delete', function(req, res) {
-    res.send(tempdata.hits);
+    console.log(req.body);
 });
 
   //-----------------------------------------//

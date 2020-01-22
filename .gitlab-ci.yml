@@ -20,7 +20,7 @@ test:
     stage: test
     script:
       - echo "testing"
-      - sudo apt-get update
-      - sudo apt-get install curl
-      - sudo curl http://localhost:4000/init
-      - sudo curl http://localhost:4000/news
+      - apt-get update -y
+      - apt-get install curl -y
+      - curl http://localhost:4000/init
+      - curl http://localhost:4200/
