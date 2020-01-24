@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, ModuleWithComponentFactories } from '
 import { NewsService } from './news.service';
 import { ID } from './newsInterface';
 import * as moment from 'moment';
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 @Component({
@@ -13,7 +14,7 @@ import * as moment from 'moment';
 export class NewsComponent implements OnInit {
   public newsdata = [];
   public Id: ID;
-  constructor(private newsservice: NewsService) { }
+  constructor(private newsservice: NewsService) {}
 
   ngOnInit() {
     this.newsservice.getnewsdata()
@@ -45,9 +46,19 @@ export class NewsComponent implements OnInit {
       return date.format('ll');
     }
   }
+  focusTrashcan(i) {
+   const trashcans = document.getElementsByClassName('trash-button');
+   const rows = document.getElementsByClassName('newslist');
+   trashcans[i].style.visibility = 'visible';
+   rows[i].style.backgroundColor = '#fafafa';
+  }
+  unfocusTrashcan(i) {
+    const trashcans = document.getElementsByClassName('trash-button');
+    const rows = document.getElementsByClassName('newslist');
+    trashcans[i].style.visibility = 'hidden';
+    rows[i].style.backgroundColor = '#fff';
+   }
 }
-
-
 
 
   // ngOnInit() {

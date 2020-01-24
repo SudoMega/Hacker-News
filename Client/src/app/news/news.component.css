@@ -1,0 +1,21 @@
+.newslist{
+  background-color:#fff;
+  border-bottom: 1px solid #ccc;
+}
+
+#title{
+  text-align: left;
+  color: #333;
+  font-size: 13pt;
+}
+
+#author{
+  color: #999;
+}
+
+.trash-button{
+  visibility: hidden;
+  border: none;
+  padding: 0;
+  background: none;
+}
