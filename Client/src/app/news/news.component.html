@@ -1,21 +1,24 @@
-<mat-grid-list cols="{{ newsdata.length }}" rowHeight="100px">
-  <mat-grid-tile
+<body>
+  <mat-list >
+    <mat-list-item
     (click)="openlink(data.story_url, data.url)"
     *ngFor="let data of newsdata; index as i"
-    [colspan]="newsdata.length"
-    [rowspan]= 1
     class="newslist"
     (mouseover) ="focusTrashcan(i)"
     (mouseout) = "unfocusTrashcan(i)"
-  >   <div id="title">{{ data.story_title || data.title}}</div>
-      <div id="author">&nbsp;-&nbsp; {{ data.author }} &nbsp;-&nbsp;</div>
-      <div style="color:#333; float: right;">{{ displayDate(data.created_at) }} </div>
-    <button (click)='deleteNews(data.objectID)' class="trash-button">
-      <img src="/assets/images/Garbage_Bin.png" alt="Delete" width="30px" height="30px">
-    </button>
-  </mat-grid-tile>
-</mat-grid-list>
+    >
+    <div id="title">{{ data.story_title || data.title}}
+      <a id="author">&nbsp;-&nbsp; {{ data.author }} &nbsp;-&nbsp;</a>
+    </div>
+        <div id="date">{{ displayDate(data.created_at) }} </div>
+      <button (click)='deleteNews(data.objectID)' class="trash-button">
+        <img src="/assets/images/Garbage_Bin.png" alt="Delete" width="30px" height="30px">
+      </button>
 
+    </mat-list-item
+    >
+  </mat-list>
+</body>
 
 
 

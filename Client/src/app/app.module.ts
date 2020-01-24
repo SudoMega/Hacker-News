@@ -9,7 +9,6 @@ import { NewsService } from './news/news.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
-import {MatButtonModule} from '@angular/material';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NewsTestComponent } from './news-test/news-test.component';
 
@@ -26,7 +25,6 @@ import { NewsTestComponent } from './news-test/news-test.component';
     BrowserAnimationsModule,
     MatDividerModule,
     MatListModule,
-    MatButtonModule,
     MatGridListModule
   ],
   providers: [NewsService],

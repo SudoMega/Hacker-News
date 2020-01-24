@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+#header{
+  background-color: black;
+}
+#title{
+  background-color: black;
+  color:white;
+  padding-top: 70px;
+  padding-left: 50px;
+  padding-bottom: 5px;
+  font-size: 60pt;
+  white-space: nowrap;
+}
+#subtitle{
+  background-color: black;
+  color:white;
+  margin-bottom: 80px;
+  padding-left: 50px;
+  font-size: 20pt;
+  white-space: nowrap;
+}
+
