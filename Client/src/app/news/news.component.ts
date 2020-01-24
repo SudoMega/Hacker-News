@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, ModuleWithComponentFactories } from '@angular/core';
 import { NewsService } from './news.service';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { ID } from './newsInterface';
-import { ReturnStatement, preserveWhitespacesDefault } from '@angular/compiler';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-news',
@@ -30,9 +29,21 @@ export class NewsComponent implements OnInit {
     }
   }
   openlink(url1: string, url2: string) {
+    console.log(this.newsdata[0].created_at);
     if (url1 !== null) {
     window.open(url1, '_blank');
     } else {window.open(url2, '_blank'); }
+  }
+  displayDate(objectdate: string) {
+    const date = moment(objectdate);
+    const now = moment();
+    if ( date > now.subtract(1, 'days')) {
+      return date.format('LT');
+    } else if ((date > now.subtract(2, 'days')) ) {
+      return 'Yesterday';
+    } else {
+      return date.format('ll');
+    }
   }
 }
 

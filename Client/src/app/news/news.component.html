@@ -4,13 +4,15 @@
     [colspan]="newsdata.length"
     [rowspan]= 1
   >
-  <!-- [style.background]= 'black' -->
     <button (click)="openlink(data.story_url, data.url)">
       {{ data.story_title || data.title}}
       <div style="color:gray; float: right;">&nbsp;-&nbsp; {{ data.author }} &nbsp;-&nbsp;</div>
     </button>
-    <div><button (click)='deleteNews(data.objectID)'>DeleteMe</button></div>
+    <div><button (click)='deleteNews(data.objectID)'>
+      DeleteMe
+      <div style="color:gray; float: left;">&nbsp;-&nbsp; {{ displayDate(data.created_at) }} &nbsp;-&nbsp;</div>
+    </button></div>
     <mat-divider></mat-divider>
   </mat-grid-tile>
 </mat-grid-list>
-<!-- <button (click)='test()'>press</button> -->
+

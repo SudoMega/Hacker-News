@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { NewsArray, ID } from './newsInterface';
 import { Observable } from 'rxjs';
 
+const urlntest = 'http://localhost:4000';
 const urlnews = 'http://server:4000/news';
 const urlnews1 = 'http://192.168.99.100:4000/news';
 const urlnews2 = 'http://localhost:4000/news';
@@ -19,7 +20,7 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   getnewsdata(): Observable<NewsArray[]> {
-    return this.http.get<NewsArray[]>(urlnews1);
+    return this.http.get<NewsArray[]>(urlntest);
 }
   deleteObject(id: string): Observable<ID> {
     console.log(urldelete1 + id);
