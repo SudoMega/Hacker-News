@@ -17,7 +17,7 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   getnewsdata(): Observable<NewsArray[]> {
-   return this.http.get<NewsArray[]>(urlnews);
+   return this.http.get<NewsArray[]>('server:4000/news');
 }
   deleteObject(id: string): Observable<ID> {
     return this.http.get<ID>(urldelete + id);
