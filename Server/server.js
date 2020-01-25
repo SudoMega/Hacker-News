@@ -35,9 +35,8 @@ app.get('/', function(req, res) {
 app.get('/news', function(req, res) {
     var resultArray = [];
     client.connect(config.DB, { useUnifiedTopology: true }, function(err, client) {
-        // assert.equal(null, err);
         var db = client.db('mynewsdb')
-        var cursor = db.collection('news-data').find();
+        var cursor = db.collection('news-data').find().sort( { created_at: -1 } );
         cursor.forEach(function(element, err) {
             if (element.isdeleted === false){
                 resultArray.push(element);
@@ -48,6 +47,8 @@ app.get('/news', function(req, res) {
         });
     });
 });
+
+//Loads the first set of data to the Database
 app.get('/init', function(req, res) {
     client.connect(config.DB, { useUnifiedTopology: true }, function(err, client) {
         var db = client.db('mynewsdb');
@@ -64,29 +65,8 @@ app.get('/init', function(req, res) {
     });
 });
 
-// app.get('/delete/:id', function(req, res) {
-//     console.log(req.params.id);
-//     var resultArray = [];
-//     var myquery = { isdeleted: true };
-//     client.connect(config.DB, { useUnifiedTopology: true }, function(err, client) {
-//         var db = client.db('mynewsdb');
-//         var cursor = db.collection('news-data').find();
-//         cursor.forEach(element => {
-//           resultArray.push(element);
-//       },function(){
-//           resultArray.forEach(element => {        
-//               if (element.objectID === req.params.id){
-//                 db.collection("news-data").update(myquery,{ objectID: req.params.id}, function(err, res) {
-//                   if (err) throw err;
-//                   console.log("1 document updated");
-//                   client.close();
-//                 });
-//               }         
-//           });    
-//       });
-//     });
-// });
-
+//Gives the Tag Deleted to an item.
+//It dosent delete the item from the DB, because it would be reloaded once an hour
 app.get('/delete/:id', function(req, res) {
   console.log(req.params.id);
   var resultArray = [];
@@ -108,6 +88,7 @@ app.get('/delete/:id', function(req, res) {
 //-----------------------------------------//
 
 //Checks for new news every 1 hour and adds them to the database
+//Only add non duplicate entries and non null titles (both titles)
 setInterval(dataRefresh, 1000*60*60);
 function dataRefresh(){
     var resultArray = [];
@@ -139,12 +120,14 @@ function dataRefresh(){
                     }
                     console.log(duplicated);
                 }); 
+            }, function(){
+                client.close();
             });    
         });
     });
 }
 
-//Function to add an identifier to know if the object as been deleted
+//Function to add an identifier to know if the object as been deleted by the client
 function dataload(){
     var newsdata = JSON.parse(ourRequest.responseText);
     for (i = 0; i < newsdata.hits.length; i++) {

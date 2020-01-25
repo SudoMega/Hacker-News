@@ -20,12 +20,9 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   getnewsdata(): Observable<NewsArray[]> {
-    let data = this.http.get<NewsArray[]>(urlntest);
-    // sortedData = data
-    return data
+   return this.http.get<NewsArray[]>(urlnews1);
 }
   deleteObject(id: string): Observable<ID> {
-    console.log(urldelete1 + id);
     return this.http.get<ID>(urldelete1 + id);
   }
 }

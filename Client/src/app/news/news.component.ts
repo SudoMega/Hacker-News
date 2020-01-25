@@ -16,10 +16,12 @@ export class NewsComponent implements OnInit {
   public Id: ID;
   constructor(private newsservice: NewsService) {}
 
+  // Loads the News data in an array
   ngOnInit() {
     this.newsservice.getnewsdata()
     .subscribe(data => this.newsdata = data);
   }
+  // Deletes the Row in the browser and subscribe to the observable that send a signal to the server
   deleteNews(id: string) {
     for (let x = 0; x < this.newsdata.length; x++) {
       if (this.newsdata[x].objectID === id) {
@@ -29,12 +31,15 @@ export class NewsComponent implements OnInit {
       }
     }
   }
+  // Logic to open links when clicking a row
   openlink(url1: string, url2: string) {
     console.log(this.newsdata[0].created_at);
     if (url1 !== null) {
     window.open(url1, '_blank');
     } else {window.open(url2, '_blank'); }
   }
+
+  // Displays the date using a library
   displayDate(objectdate: string) {
     const date = moment(objectdate);
     const now = moment();
@@ -46,29 +51,18 @@ export class NewsComponent implements OnInit {
       return date.format('ll');
     }
   }
+
+  // These two functions make the the trashcan visible when you hover the mouse over
   focusTrashcan(i) {
-   const trashcans = document.getElementsByClassName('trash-button');
-   const rows = document.getElementsByClassName('newslist');
+   const trashcans = document.getElementsByClassName('trash-button') as HTMLCollectionOf<HTMLElement>;
+   const rows = document.getElementsByClassName('newslist') as HTMLCollectionOf<HTMLElement>;
    trashcans[i].style.visibility = 'visible';
    rows[i].style.backgroundColor = '#fafafa';
   }
   unfocusTrashcan(i) {
-    const trashcans = document.getElementsByClassName('trash-button');
-    const rows = document.getElementsByClassName('newslist');
+    const trashcans = document.getElementsByClassName('trash-button') as HTMLCollectionOf<HTMLElement>;
+    const rows = document.getElementsByClassName('newslist') as HTMLCollectionOf<HTMLElement>;
     trashcans[i].style.visibility = 'hidden';
     rows[i].style.backgroundColor = '#fff';
    }
 }
-
-
-  // ngOnInit() {
-  //   //  this.data = this.news.getTiles();
-  //   //  let data = this.data;
-  //   let params = new HttpParams().set('userId', '1');
-  //   let headers = new HttpHeaders().set('Authorization', 'auth-token');
-
-  //   this.posts = this.http.get<NewsArray[]>('http://localhost:3000/news', { params, headers });
-  //   let metadata = this.posts;
-  //   this.tiles.push({text: metadata[0].author, cols: 4, rows: 1, color: 'lightblue'});
-
-  // }
