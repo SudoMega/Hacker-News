@@ -15,9 +15,9 @@ build:
         - pip install docker-compose
         - docker-compose build
         - docker-compose up -d
-        - echo "testing"
-        - apk --no-cache add curl
-        - curl http://192.168.99.100:4200
+        # - echo "testing"
+        # - apk --no-cache add curl
+        # - curl http://192.168.99.100:4200
 
 # test:
 #     stage: test

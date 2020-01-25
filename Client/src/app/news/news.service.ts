@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { NewsArray, ID } from './newsInterface';
 import { Observable } from 'rxjs';
 
-const urlnews = 'http://server:4000/news';
+const urlnews = 'http://localhost:4000/news';
 const urlnews1 = 'http://192.168.99.100:4000/news';
 const urldelete = 'http://server:4000/delete';
 const urldelete1 = 'http://192.168.99.100:4000/delete/';
