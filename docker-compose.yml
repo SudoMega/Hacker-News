@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 services:
   server:
     container_name: server
@@ -8,16 +8,25 @@ services:
       - "4000:4000"
     links:
       - mongo
+    networks:
+      - the_net
   client:
     container_name: client
     restart: always
     build: Client/.
     ports:
       - "4200:4200"
-    links:
-      - server
+    links: 
+      - server:miservidor
+    networks:
+      - the_net
   mongo:
     container_name: mongo
     image: mongo
     ports:
       - "27017:27017"
+    networks:
+      - the_net
+  
+networks:
+  the_net:
