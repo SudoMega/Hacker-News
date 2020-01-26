@@ -17,10 +17,10 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   getnewsdata(): Observable<NewsArray[]> {
-   return this.http.get<NewsArray[]>('http://54.205.45.145:4000/news');
+   return this.http.get<NewsArray[]>(urlnews);
 }
   deleteObject(id: string): Observable<ID> {
-    return this.http.get<ID>('http://54.205.45.145:4000/delete/' + id);
+    return this.http.get<ID>(urldelete + id);
   }
 }
 
