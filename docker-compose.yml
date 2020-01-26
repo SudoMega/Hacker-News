@@ -3,30 +3,22 @@ services:
   server:
     container_name: server
     restart: always
-    build: Server/.
+    build: server/.
     ports:
       - "4000:4000"
     links:
       - mongo
-    networks:
-      - the_net
   client:
+    hostname: localhost
     container_name: client
     restart: always
-    build: Client/.
+    build: client/.
     ports:
-      - "4200:4200"
+      - "80:80"
     links: 
-      - server
-    networks:
-      - the_net
+      - mongo
   mongo:
     container_name: mongo
     image: mongo
     ports:
       - "27017:27017"
-    networks:
-      - the_net
-  
-networks:
-  the_net:

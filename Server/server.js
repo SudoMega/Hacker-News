@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-//Load the data
+//Load the data the first time
 var ourRequest = new XMLHttpRequest()
 ourRequest.open('GET', 'https://hn.algolia.com/api/v1/search_by_date?query=nodejs')
 ourRequest.onload = dataload
@@ -87,17 +87,21 @@ app.get('/delete/:id', function(req, res) {
  //----------------FUNCTIONS----------------//
 //-----------------------------------------//
 
-//Checks for new news every 1 hour and adds them to the database
-//Only add non duplicate entries and non null titles (both titles)
-setInterval(dataRefresh, 1000*60*60);
-function dataRefresh(){
-    var resultArray = [];
+// Refresh the data cache before its loaded to the database
+setInterval(dataRefresh, 1000*60*59)
+function dataRefresh (){
     var ourRequest = new XMLHttpRequest()
     ourRequest.open('GET', 'https://hn.algolia.com/api/v1/search_by_date?query=nodejs')
     ourRequest.onload = dataload
     ourRequest.send();
+}
 
-    client.connect(config.DB, { useUnifiedTopology: true }, function(err, client) {
+//Checks for new news every 1 hour and adds them to the database
+//Only add non duplicate entries and non null titles (both titles)
+setInterval(dataLoadOnDB, 1000*60*60);
+function dataLoadOnDB(){
+    var resultArray = [];
+        client.connect(config.DB, { useUnifiedTopology: true }, function(err, client) {
         var db = client.db('mynewsdb');
         var cursor = db.collection('news-data').find();
         cursor.forEach(element => {
@@ -118,7 +122,6 @@ function dataRefresh(){
                             console.log('item inserted');
                         });         
                     }
-                    console.log(duplicated);
                 }); 
             }, function(){
                 client.close();
@@ -143,3 +146,5 @@ function dataload(){
 app.listen(PORT, function(){
     console.log('Your node js server is running on PORT:',PORT);
 });
+
+
