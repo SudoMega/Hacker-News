@@ -39,11 +39,11 @@ Every time you access this link, you will add the current news. Accessing this u
 Finally, just access the url of the client, it contains all the functionality for the user, 
 
 ```
-http://192.168.99.100:4000/init
+http://192.168.99.100
 ```
 or
 ```
-http://127.0.0.1:4000/init
+http://127.0.0.1
 ```
 
 ### MIT License
