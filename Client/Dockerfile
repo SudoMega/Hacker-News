@@ -12,9 +12,9 @@ WORKDIR /src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build -- --prod --output-path=./dist/out
+RUN npm run build -- --prod
 
 ## STAGE 2
 FROM nginx:latest
-COPY --from=node /src/app/dist/out usr/share/nginx/html
+COPY --from=node /src/app/dist/client usr/share/nginx/html
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
