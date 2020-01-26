@@ -12,7 +12,7 @@ WORKDIR /src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build -- --prod
+RUN npm run build
 
 ## STAGE 2
 FROM nginx:latest
