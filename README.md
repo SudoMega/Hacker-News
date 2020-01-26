@@ -24,24 +24,24 @@ The Front-end, Back-end and MongoDB should be running in the terminal.
 
 Now you can access the client and the server in their respective ports 80 and 4000.
 
-To populate the database for the first time you need to connect to
+To populate the database for the first time you need to connect to the server, if you have Docker ToolBox like me, access the container on
 
 ```
 http://192.168.99.100:4000/init
 ```
-or
+Otherwise access on
 ```
 http://127.0.0.1:4000/init
 ```
 
 Every time you access this link, you will add the current news. Accessing this url multiple times will create duplicates, its only meant to be run one time and its not accesible by the client.
 
-Finally, just access the url of the client, it contains all the functionality for the user, if you have Docker ToolBox like me, access the container on
+Finally, just access the url of the client, it contains all the functionality for the user, 
 
 ```
 http://192.168.99.100:4000/init
 ```
-Otherwise access on
+or
 ```
 http://127.0.0.1:4000/init
 ```
