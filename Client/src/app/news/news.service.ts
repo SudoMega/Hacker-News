@@ -20,7 +20,7 @@ export class NewsService {
    return this.http.get<NewsArray[]>('http://3.83.39.191:4000/news');
 }
   deleteObject(id: string): Observable<ID> {
-    return this.http.get<ID>('http://3.83.39.191:4000/news' + id);
+    return this.http.get<ID>('http://3.83.39.191:4000/delete/' + id);
   }
 }
 
