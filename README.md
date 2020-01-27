@@ -2,11 +2,13 @@
 
 This App recollects information from Hacker News and saves it in a mongoDB. The client shows the news and the server manage the data.
 
-For demostration purposes, the app is working in the EC2 Instance http://54.205.45.145:4200/
+For demostration purposes, the app is working in the EC2 Instance http://54.242.216.106/
 
 ### Prerequisites
 
 To run the app you will need Docker and Docker-compose
+
+You will also need node.js, npm and angular CLI
 
 ### Installing
 
@@ -18,28 +20,30 @@ docker-compose build
 docker-compose up
 ```
 
-The Front-end, Back-end and MongoDB shoud be running in the terminal.
+The Front-end, Back-end and MongoDB should be running in the terminal.
 
-Now you can access the client and the server, the client is
+Now you can access the client and the server in their respective ports 80 and 4000.
 
-```
-Http://localhost:4200
-```
-and the server
-```
-Http://localhost:4000
-```
-To populate the database for the first time you need to connect to
+To populate the database for the first time you need to connect to the server, if you have Docker ToolBox like me, access the container on
 
 ```
-Http://localhost:4000/init
+http://192.168.99.100:4000/init
 ```
-Every time you access this link, you will add the current news. Accessing this url multiple times will create duplicates, its only meant to be run one time and its not accesible by the user.
+Otherwise access on
+```
+http://127.0.0.1:4000/init
+```
 
-Finally, just access the url of the client, it contains all the functionality for the user.
+Every time you access this link, you will add the current news. Accessing this url multiple times will create duplicates, its only meant to be run one time and its not accesible by the client.
+
+Finally, just access the url of the client, it contains all the functionality for the user, 
 
 ```
-Http://localhost:4200
+http://192.168.99.100
+```
+or
+```
+http://127.0.0.1
 ```
 
 ### MIT License
