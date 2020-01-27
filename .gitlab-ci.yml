@@ -20,4 +20,6 @@ test:
     stage: test
     script:
       - echo "Testing"
+      - apk add --update nodejs npm
+      - apk add --update npm
       - npm test
