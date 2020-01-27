@@ -22,5 +22,5 @@ test:
       - apk add --update npm
       - cd Server
       - npm i -g mocha
-      - mocha tests/*
+      - mocha __tests__/*
 
