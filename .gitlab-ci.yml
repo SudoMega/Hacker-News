@@ -16,7 +16,7 @@ build:
         - pip install docker-compose
         - docker-compose build
         - docker-compose up -d
-        - sleep 30
+        - sleep 60
         - apk --no-cache add curl
         - curl http://localhost:4000/init
         - curl http://localhost:4000/news
