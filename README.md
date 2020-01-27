@@ -2,7 +2,7 @@
 
 This App recollects information from Hacker News and saves it in a mongoDB. The client shows the news and the server manage the data.
 
-For demostration purposes, the app is working in the EC2 Instance http://54.242.216.106/
+For demostration purposes, the app is working in the EC2 Instance http://54.221.9.145/
 
 ### Prerequisites
 
