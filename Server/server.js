@@ -6,7 +6,7 @@ const config = require('./db');
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const cors = require ('cors');
 const bodyParser = require('body-parser')
-const assert = require('assert');
+
 
 
 var tempdata;
@@ -55,7 +55,6 @@ app.get('/init', function(req, res) {
         tempdata.hits.forEach(function(dataElement, err) {        
             if (dataElement.title !== null || dataElement.story_title !== null) {
                 db.collection('news-data').insertOne(dataElement, function (err, result) {
-                    console.log('item inserted');
                 });
             }
         },function (){
@@ -68,14 +67,12 @@ app.get('/init', function(req, res) {
 //Gives the Tag Deleted to an item.
 //It dosent delete the item from the DB, because it would be reloaded once an hour
 app.get('/delete/:id', function(req, res) {
-  console.log(req.params.id);
   var resultArray = [];
   var item = { isdeleted: true };
   client.connect(config.DB, { useUnifiedTopology: true }, function(err, client) {
       var db = client.db('mynewsdb');
       db.collection("news-data").updateOne({"objectID": req.params.id}, {$set: item}, function(err, res) {
         if (err) throw err;
-        console.log("1 document updated");
         client.close();
       });
   });
@@ -137,7 +134,6 @@ function dataload(){
         newsdata.hits[i].isdeleted = false;
     }
     tempdata = newsdata;
-    console.log('refreshing data!');
     return tempdata;
 }
 
@@ -147,4 +143,5 @@ app.listen(PORT, function(){
     console.log('Your node js server is running on PORT:',PORT);
 });
 
-
+module.exports = app;
+module.exports = dataload, dataRefresh;

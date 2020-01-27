@@ -11,17 +11,19 @@ before_script:
 build:
     stage: build
     script:
+        - echo "Building"
         - apk add --no-cache py-pip python-dev libffi-dev openssl-dev gcc libc-dev make
         - pip install docker-compose
         - docker-compose build
         - docker-compose up -d
-        # - echo "testing"
-        # - apk --no-cache add curl
-        # - curl localhost:4000
-
-# test:
-#     stage: test
-#     script:
-#       - echo "testing"
-#       - apk --no-cache add curl
-#       - curl http://localhost:4200/
+        - sleep 30
+        - apk --no-cache add curl
+        - curl http://localhost:4000/init
+        - curl http://localhost:4000/news
+        - sleep 5
+        - curl http://localhost:4200/
+test:
+    stage: test
+    script:
+      - echo "Testing"
+      - npm test
