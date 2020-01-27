@@ -20,5 +20,7 @@ test:
     script:
       - apk add --update nodejs npm
       - apk add --update npm
+      - ls
+      - cd Server
       - npm test
 
